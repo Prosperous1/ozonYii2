@@ -2,103 +2,137 @@
 
 namespace app\models;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+use Yii;
+
+/**
+ * This is the model class for table "user".
+ *
+ * @property int $id
+ * @property string $email
+ * @property string $password
+ * @property int $telephone
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $city
+ * @property string $birthday
+ * @property int $currency
+ * @property string $sex
+ * @property string $photo
+ * @property int $card
+ * @property int $role
+ * @property int $favourite_list
+ * @property int $order_list
+ * @property int $cart
+ *
+ * @property CardList $card0
+ * @property CartItem $cart0
+ * @property CurrencyList $currency0
+ * @property ProductList $favouriteList
+ * @property OrderList $orderList
+ */
+class User extends \yii\db\ActiveRecord
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
-
     /**
      * {@inheritdoc}
      */
-    public static function findIdentity($id)
+    public static function tableName()
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return 'user';
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function findIdentityByAccessToken($token, $type = null)
+    public function rules()
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return [
+            [['email', 'password', 'telephone', 'first_name', 'last_name', 'city', 'birthday', 'currency', 'sex', 'photo', 'card', 'role', 'favourite_list', 'order_list', 'cart'], 'required'],
+            [['telephone', 'currency', 'card', 'role', 'favourite_list', 'order_list', 'cart'], 'integer'],
+            [['birthday'], 'safe'],
+            [['sex'], 'string'],
+            [['email', 'password', 'photo'], 'string', 'max' => 500],
+            [['first_name', 'last_name'], 'string', 'max' => 50],
+            [['city'], 'string', 'max' => 90],
+            [['card'], 'exist', 'skipOnError' => true, 'targetClass' => CardList::class, 'targetAttribute' => ['card' => 'id']],
+            [['currency'], 'exist', 'skipOnError' => true, 'targetClass' => CurrencyList::class, 'targetAttribute' => ['currency' => 'id']],
+            [['favourite_list'], 'exist', 'skipOnError' => true, 'targetClass' => ProductList::class, 'targetAttribute' => ['favourite_list' => 'id']],
+            [['order_list'], 'exist', 'skipOnError' => true, 'targetClass' => OrderList::class, 'targetAttribute' => ['order_list' => 'id']],
+            [['cart'], 'exist', 'skipOnError' => true, 'targetClass' => CartItem::class, 'targetAttribute' => ['cart' => 'id']],
+        ];
     }
 
     /**
-     * Finds user by username
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'email' => 'Почта',
+            'password' => 'Пароль',
+            'telephone' => 'Телефон',
+            'first_name' => 'Фамилия',
+            'last_name' => 'Имя',
+            'city' => 'Город',
+            'birthday' => 'День рождения',
+            'currency' => 'Валюта',
+            'sex' => 'Пол',
+            'photo' => 'Фото',
+            'card' => 'Карта',
+            'role' => 'Роль',
+            'favourite_list' => 'Избранное',
+            'order_list' => 'Заказы',
+            'cart' => 'Корзина',
+        ];
+    }
+
+    /**
+     * Gets query for [[Card0]].
      *
-     * @param string $username
-     * @return static|null
+     * @return \yii\db\ActiveQuery
      */
-    public static function findByUsername($username)
+    public function getCard0()
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return $this->hasOne(CardList::class, ['id' => 'card']);
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAuthKey()
-    {
-        return $this->authKey;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validateAuthKey($authKey)
-    {
-        return $this->authKey === $authKey;
-    }
-
-    /**
-     * Validates password
+     * Gets query for [[Cart0]].
      *
-     * @param string $password password to validate
-     * @return bool if password provided is valid for current user
+     * @return \yii\db\ActiveQuery
      */
-    public function validatePassword($password)
+    public function getCart0()
     {
-        return $this->password === $password;
+        return $this->hasOne(CartItem::class, ['id' => 'cart']);
+    }
+
+    /**
+     * Gets query for [[Currency0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCurrency0()
+    {
+        return $this->hasOne(CurrencyList::class, ['id' => 'currency']);
+    }
+
+    /**
+     * Gets query for [[FavouriteList]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFavouriteList()
+    {
+        return $this->hasOne(ProductList::class, ['id' => 'favourite_list']);
+    }
+
+    /**
+     * Gets query for [[OrderList]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderList()
+    {
+        return $this->hasOne(OrderList::class, ['id' => 'order_list']);
     }
 }
