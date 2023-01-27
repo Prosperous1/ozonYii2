@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category')->textInput() ?>
+    <?= $form->field($model, 'category')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\CategoryId::find()->all(), 'id','name'))?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'company')->textInput() ?>
+    <?= $form->field($model, 'company')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\CompanyList::find()->all(), 'id','company_id')) ?>
 
     <?= $form->field($model, 'create_at')->textInput() ?>
 
@@ -40,7 +40,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'rating')->textInput() ?>
 
-    <?= $form->field($model, 'review')->textInput() ?>
+    <?= $form->field($model, 'review')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\ReviewList::find()->all(), 'id','review_id')) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

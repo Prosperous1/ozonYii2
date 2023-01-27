@@ -26,7 +26,6 @@ use Yii;
  *
  * @property CardList $card0
  * @property CartItem $cart0
- * @property CurrencyList $currency0
  * @property ProductList $favouriteList
  * @property OrderList $orderList
  */
@@ -54,7 +53,6 @@ class User extends \yii\db\ActiveRecord
             [['first_name', 'last_name'], 'string', 'max' => 50],
             [['city'], 'string', 'max' => 90],
             [['card'], 'exist', 'skipOnError' => true, 'targetClass' => CardList::class, 'targetAttribute' => ['card' => 'id']],
-            [['currency'], 'exist', 'skipOnError' => true, 'targetClass' => CurrencyList::class, 'targetAttribute' => ['currency' => 'id']],
             [['favourite_list'], 'exist', 'skipOnError' => true, 'targetClass' => ProductList::class, 'targetAttribute' => ['favourite_list' => 'id']],
             [['order_list'], 'exist', 'skipOnError' => true, 'targetClass' => OrderList::class, 'targetAttribute' => ['order_list' => 'id']],
             [['cart'], 'exist', 'skipOnError' => true, 'targetClass' => CartItem::class, 'targetAttribute' => ['cart' => 'id']],
@@ -68,21 +66,21 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'email' => 'Почта',
-            'password' => 'Пароль',
-            'telephone' => 'Телефон',
-            'first_name' => 'Фамилия',
-            'last_name' => 'Имя',
-            'city' => 'Город',
-            'birthday' => 'День рождения',
-            'currency' => 'Валюта',
-            'sex' => 'Пол',
-            'photo' => 'Фото',
-            'card' => 'Карта',
-            'role' => 'Роль',
-            'favourite_list' => 'Избранное',
-            'order_list' => 'Заказы',
-            'cart' => 'Корзина',
+            'email' => 'Email',
+            'password' => 'Password',
+            'telephone' => 'Telephone',
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'city' => 'City',
+            'birthday' => 'Birthday',
+            'currency' => 'Currency',
+            'sex' => 'Sex',
+            'photo' => 'Photo',
+            'card' => 'Card',
+            'role' => 'Role',
+            'favourite_list' => 'Favourite List',
+            'order_list' => 'Order List',
+            'cart' => 'Cart',
         ];
     }
 
@@ -104,16 +102,6 @@ class User extends \yii\db\ActiveRecord
     public function getCart0()
     {
         return $this->hasOne(CartItem::class, ['id' => 'cart']);
-    }
-
-    /**
-     * Gets query for [[Currency0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCurrency0()
-    {
-        return $this->hasOne(CurrencyList::class, ['id' => 'currency']);
     }
 
     /**

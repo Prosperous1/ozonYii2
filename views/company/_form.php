@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'create_by')->textInput() ?>
 
-    <?= $form->field($model, 'product')->textInput() ?>
+    <?= $form->field($model, 'product')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\ProductList::find()->all(), 'id','product_id')) ?>
 
     <?= $form->field($model, 'workman')->textInput() ?>
 
