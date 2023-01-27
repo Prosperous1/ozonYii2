@@ -2,11 +2,11 @@
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">No Ozone</h1>
+    <h1 align="center">Ozone</h1>
     <br>
 </p>
 
-Приложение для интернет-магазина "No Ozone"
+Приложение для интернет-магазина "Ozone"
 
 Основано на Yii2.
 
