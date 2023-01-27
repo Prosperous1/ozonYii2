@@ -57,7 +57,7 @@ PHP v7.4.
 ```php
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=noozone',
+    'dsn' => 'mysql:host=localhost;dbname=ozone',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',
