@@ -2,11 +2,11 @@
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Ozone</h1>
+    <h1 align="center">Ozon</h1>
     <br>
 </p>
 
-Приложение для интернет-магазина "Ozone"
+Приложение для интернет-магазина "Ozon"
 
 Основано на Yii2.
 
@@ -57,7 +57,7 @@ PHP v7.4.
 ```php
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=ozone',
+    'dsn' => 'mysql:host=localhost;dbname=ozon',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',
