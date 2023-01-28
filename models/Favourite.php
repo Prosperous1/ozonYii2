@@ -42,7 +42,7 @@ class Favourite extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'product_id' => 'Product ID',
+            'product_id' => 'Продукты',
         ];
     }
 

@@ -54,14 +54,14 @@ class Company extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'inn' => 'Inn',
-            'photo_url' => 'Photo Url',
-            'created_at' => 'Created At',
-            'modificated_at' => 'Modificated At',
-            'created_by' => 'Created By',
-            'manager_list_id' => 'Manager List ID',
-            'products_id' => 'Products ID',
+            'title' => 'Название',
+            'inn' => 'Инн',
+            'photo_url' => 'Ссылка на фото',
+            'created_at' => 'Создано',
+            'modificated_at' => 'Изменено',
+            'created_by' => 'Кем создано',
+            'manager_list_id' => 'Список менеджеров',
+            'products_id' => 'Продукты',
         ];
     }
 

@@ -48,11 +48,11 @@ class Card extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'number' => 'Number',
-            'date_end' => 'Date End',
-            'owner_name' => 'Owner Name',
-            'is_default' => 'Is Default',
-            'user_id' => 'User ID',
+            'number' => 'Номер',
+            'date_end' => 'Дата окончание',
+            'owner_name' => 'Имя держателя',
+            'is_default' => 'По умолчанию',
+            'user_id' => 'Пользователь',
         ];
     }
 

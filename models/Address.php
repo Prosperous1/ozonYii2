@@ -50,12 +50,12 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'city_id' => 'City ID',
-            'street' => 'Street',
-            'house' => 'House',
-            'apartment' => 'Apartment',
-            'description' => 'Description',
-            'user_id' => 'User ID',
+            'city_id' => 'Город',
+            'street' => 'Улица',
+            'house' => 'Дом',
+            'apartment' => 'Квартира',
+            'description' => 'Описание',
+            'user_id' => 'Пользователь',
         ];
     }
 

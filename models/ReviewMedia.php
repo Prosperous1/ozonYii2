@@ -46,9 +46,9 @@ class ReviewMedia extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'media_type_id' => 'Media Type ID',
-            'url' => 'Url',
-            'review_id' => 'Review ID',
+            'media_type_id' => 'Тип медиа',
+            'url' => 'Ссылка',
+            'review_id' => 'Отзыв',
         ];
     }
 

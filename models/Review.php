@@ -55,16 +55,16 @@ class Review extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'advantage' => 'Advantage',
-            'disadvantage' => 'Disadvantage',
-            'description' => 'Description',
-            'is_approved' => 'Is Approved',
-            'likes' => 'Likes',
-            'dislikes' => 'Dislikes',
-            'created_at' => 'Created At',
-            'modificated_at' => 'Modificated At',
-            'created_by' => 'Created By',
-            'product_id' => 'Product ID',
+            'advantage' => 'Плюсы',
+            'disadvantage' => 'Минусы',
+            'description' => 'Описание',
+            'is_approved' => 'Проверено',
+            'likes' => 'Нравится',
+            'dislikes' => 'Не нравится',
+            'created_at' => 'Создано',
+            'modificated_at' => 'Изменено',
+            'created_by' => 'Кем создано',
+            'product_id' => 'Продукт',
         ];
     }
 

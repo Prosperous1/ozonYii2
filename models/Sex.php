@@ -40,7 +40,7 @@ class Sex extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nane' => 'Nane',
+            'nane' => 'Пол',
         ];
     }
 

@@ -44,8 +44,8 @@ class Cart extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'total' => 'Total',
-            'products_id' => 'Products ID',
+            'total' => 'Итог',
+            'products_id' => 'Продукты',
         ];
     }
 

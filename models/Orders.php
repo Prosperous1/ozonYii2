@@ -42,7 +42,7 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'order_id' => 'Order ID',
+            'order_id' => 'Заказы',
         ];
     }
 

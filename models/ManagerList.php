@@ -42,7 +42,7 @@ class ManagerList extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'manager_id' => 'Manager ID',
+            'manager_id' => 'Менеджеры',
         ];
     }
 
