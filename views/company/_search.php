@@ -29,8 +29,6 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'create_by') ?>
 
-    <?php // echo $form->field($model, 'product') ?>
-
     <?php // echo $form->field($model, 'workman') ?>
 
     <div class="form-group">

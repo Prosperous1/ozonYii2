@@ -24,11 +24,20 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'rating')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'create_at')->textInput() ?>
+    <?= $form->field($model, 'create_at')->widget(\yii\jui\DatePicker::className(), [
+        'options' => ['class' => 'form-control'],
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
-    <?= $form->field($model, 'modified_at')->textInput() ?>
+    <?= $form->field($model, 'modified_at')->widget(\yii\jui\DatePicker::className(), [
+        'options' => ['class' => 'form-control'],
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
-    <?= $form->field($model, 'create_by')->textInput() ?>
+    <?= $form->field($model, 'create_by')->widget(\yii\jui\DatePicker::className(), [
+        'options' => ['class' => 'form-control'],
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
     <?= $form->field($model, 'like')->textInput() ?>
 

@@ -18,13 +18,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'inn')->textInput() ?>
 
-    <?= $form->field($model, 'create_at')->textInput() ?>
+    <?= $form->field($model, 'create_at')->widget(\yii\jui\DatePicker::className(), [
+        'options' => ['class' => 'form-control'],
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
-    <?= $form->field($model, 'modified_at')->textInput() ?>
+    <?= $form->field($model, 'modified_at')->widget(\yii\jui\DatePicker::className(), [
+        'options' => ['class' => 'form-control'],
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
-    <?= $form->field($model, 'create_by')->textInput() ?>
+    <?= $form->field($model, 'create_by')->widget(\yii\jui\DatePicker::className(), [
+        'options' => ['class' => 'form-control'],
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
-    <?= $form->field($model, 'product')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\ProductList::find()->all(), 'id','product_id')) ?>
 
     <?= $form->field($model, 'workman')->textInput() ?>
 

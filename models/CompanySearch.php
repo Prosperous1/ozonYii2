@@ -17,7 +17,7 @@ class CompanySearch extends Company
     public function rules()
     {
         return [
-            [['id', 'inn', 'create_by', 'product', 'workman'], 'integer'],
+            [['id', 'inn', 'create_by', 'workman'], 'integer'],
             [['title', 'photo', 'create_at', 'modified_at'], 'safe'],
         ];
     }
@@ -63,7 +63,6 @@ class CompanySearch extends Company
             'create_at' => $this->create_at,
             'modified_at' => $this->modified_at,
             'create_by' => $this->create_by,
-            'product' => $this->product,
             'workman' => $this->workman,
         ]);
 

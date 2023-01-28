@@ -14,11 +14,9 @@ use Yii;
  * @property string $create_at
  * @property string $modified_at
  * @property int $create_by
- * @property int $product
  * @property int $workman менеджер
  *
  * @property CompanyList $companyList
- * @property ProductList $product0
  */
 class Company extends \yii\db\ActiveRecord
 {
@@ -36,12 +34,11 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'photo', 'inn', 'create_at', 'modified_at', 'create_by', 'product', 'workman'], 'required'],
-            [['inn', 'create_by', 'product', 'workman'], 'integer'],
+            [['title', 'photo', 'inn', 'create_at', 'modified_at', 'create_by', 'workman'], 'required'],
+            [['inn', 'create_by', 'workman'], 'integer'],
             [['create_at', 'modified_at'], 'safe'],
             [['title'], 'string', 'max' => 100],
             [['photo'], 'string', 'max' => 500],
-            [['product'], 'exist', 'skipOnError' => true, 'targetClass' => ProductList::class, 'targetAttribute' => ['product' => 'id']],
         ];
     }
 
@@ -52,13 +49,12 @@ class Company extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Название',
-            'photo' => 'Медиа',
-            'inn' => 'Инн',
-            'create_at' => 'Когда создан',
-            'modified_at' => 'Когда обнавлен',
-            'create_by' => 'Кем создан',
-            'product' => 'Продукт',
+            'title' => 'Title',
+            'photo' => 'Photo',
+            'inn' => 'Inn',
+            'create_at' => 'Create At',
+            'modified_at' => 'Modified At',
+            'create_by' => 'Create By',
             'workman' => 'менеджер',
         ];
     }
@@ -71,15 +67,5 @@ class Company extends \yii\db\ActiveRecord
     public function getCompanyList()
     {
         return $this->hasOne(CompanyList::class, ['id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Product0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProduct0()
-    {
-        return $this->hasOne(ProductList::class, ['id' => 'product']);
     }
 }
