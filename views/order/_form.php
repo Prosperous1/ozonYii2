@@ -18,11 +18,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'discount')->textInput() ?>
 
-    <?= $form->field($model, 'card_id')->textInput() ?>
+    <?= $form->field($model, 'card_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Card::find()->all(), 'id', 'number')))?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'created_at')->widget(\yii\jui\DatePicker::className(), [
+        'options' => ['class' => 'form-control'],
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
-    <?= $form->field($model, 'is_delivered')->textInput() ?>
+    <?= $form->field($model, 'is_delivered')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
