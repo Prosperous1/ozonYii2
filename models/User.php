@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\base\NotSupportedException;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -36,8 +38,60 @@ use Yii;
  * @property Review[] $reviews
  * @property Sex $sex
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+
+
+    /**
+     * @inheritdoc
+     * @inheritdoc
+     */
+    public static function findIdentity($id): ?User
+    {
+        return static::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null): ?User
+    {
+        return static::findOne(['access_token' => $token]);
+    }
+
+    public static function findByUsername($login): ?User
+    {
+        return static::findOne(['login' => $login]);
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function validatePassword($password): bool
+    {
+        return Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    /**
+     * Generates password hash from password and sets it to the model
+     *
+     * @param string $password
+     * @throws \yii\base\Exception
+     */
+    public function setPassword(string $password)
+    {
+        $this->password = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    public function getAuthKey()
+    {
+        // TODO: Implement getAuthKey() method.
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        // TODO: Implement validateAuthKey() method.
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -45,29 +99,6 @@ class User extends \yii\db\ActiveRecord
     {
         return 'user';
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['mail', 'phone', 'login', 'password', 'city_id', 'sex_id', 'photo_url', 'date_of_birth', 'first_name', 'last_name'], 'required'],
-            [['city_id', 'currency_id', 'sex_id', 'cart_id', 'favourite_id', 'orders_id'], 'integer'],
-            [['date_of_birth'], 'safe'],
-            [['mail', 'login', 'first_name', 'last_name'], 'string', 'max' => 50],
-            [['phone'], 'string', 'max' => 15],
-            [['password'], 'string', 'max' => 256],
-            [['photo_url'], 'string', 'max' => 2000],
-            [['sex_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sex::class, 'targetAttribute' => ['sex_id' => 'id']],
-            [['currency_id'], 'exist', 'skipOnError' => true, 'targetClass' => Currency::class, 'targetAttribute' => ['currency_id' => 'id']],
-            [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::class, 'targetAttribute' => ['city_id' => 'id']],
-            [['cart_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cart::class, 'targetAttribute' => ['cart_id' => 'id']],
-            [['favourite_id'], 'exist', 'skipOnError' => true, 'targetClass' => Favourite::class, 'targetAttribute' => ['favourite_id' => 'id']],
-            [['orders_id'], 'exist', 'skipOnError' => true, 'targetClass' => Orders::class, 'targetAttribute' => ['orders_id' => 'id']],
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */

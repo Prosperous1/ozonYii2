@@ -12,18 +12,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="d-flex flex-row gap-5">
         <div class="d-flex flex-column">
             <h2>Списки</h2>
-            <a href="?r=category-id/index">Категории товара</a>
-            <a href="?r=product-list/index">Продукты</a>
-            <a href="?r=currency-id/index">Валюты</a>
-            <a href="?r=card-id/index">Банковские карты</a>
-            <a href="?r=company-list/index">Компании</a>
-            <a href="?r=review-list/index">Отзывы</a>
+            <a href="?r=sex/index">Пол</a>
+            <a href="?r=city/index">Город</a>
+            <a href="?r=category/index">Категории товара</a>
+            <a href="?r=currency/index">Валюты</a>
+            <a href="?r=delivery-type/index">Типы доставки</a>
+            <a href="?r=media-type/index">Тип медиа</a>
         </div>
         <div class="d-flex flex-column">
             <h2>Составные сущности</h2>
             <a href="?r=product/index">Продукт</a>
-            <a href="?r=review-id/index">Отзыв</a>
+            <a href="?r=address/index">Место доставки</a>
             <a href="?r=company/index">Компания</a>
+            <a href="?r=manager-list/index">Список менеджеров</a>
         </div>
     </div>
 </div>
