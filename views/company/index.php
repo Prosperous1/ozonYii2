@@ -31,12 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'photo',
             'inn',
-            'create_at',
-            //'modified_at',
-            //'create_by',
-            //'workman',
+            'photo_url:url',
+            'created_at',
+            //'modificated_at',
+            //'created_by',
+            //'manager_list_id',
+            //'products_id',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Company $model, $key, $index, $column) {

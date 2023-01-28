@@ -8,13 +8,15 @@ use Yii;
  * This is the model class for table "address".
  *
  * @property int $id
- * @property string $city
+ * @property int $city_id
  * @property string $street
- * @property int $house_num
- * @property int $apartment_num
- * @property string $comment
+ * @property int $house
+ * @property int $apartment
+ * @property string $description
+ * @property int $user_id
  *
- * @property Order[] $orders
+ * @property City $city
+ * @property User $user
  */
 class Address extends \yii\db\ActiveRecord
 {
@@ -32,10 +34,12 @@ class Address extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['city', 'street', 'house_num', 'apartment_num', 'comment'], 'required'],
-            [['house_num', 'apartment_num'], 'integer'],
-            [['city', 'street'], 'string', 'max' => 500],
-            [['comment'], 'string', 'max' => 1000],
+            [['city_id', 'street', 'house', 'apartment', 'description', 'user_id'], 'required'],
+            [['city_id', 'house', 'apartment', 'user_id'], 'integer'],
+            [['description'], 'string'],
+            [['street'], 'string', 'max' => 100],
+            [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::class, 'targetAttribute' => ['city_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -46,21 +50,32 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'city' => 'Город',
-            'street' => 'Улца',
-            'house_num' => 'Номер дома',
-            'apartment_num' => 'Номер квартиры',
-            'comment' => 'Комментарий',
+            'city_id' => 'City ID',
+            'street' => 'Street',
+            'house' => 'House',
+            'apartment' => 'Apartment',
+            'description' => 'Description',
+            'user_id' => 'User ID',
         ];
     }
 
     /**
-     * Gets query for [[Orders]].
+     * Gets query for [[City]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getOrders()
+    public function getCity()
     {
-        return $this->hasMany(Order::class, ['address' => 'id']);
+        return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    /**
+     * Gets query for [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 }

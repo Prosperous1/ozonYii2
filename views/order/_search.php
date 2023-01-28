@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\modelsOrderSearch $model */
+/** @var app\models\OrderSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -17,17 +17,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'user') ?>
+    <?= $form->field($model, 'delivery_type_id') ?>
 
-    <?= $form->field($model, 'type_of_order') ?>
-
-    <?= $form->field($model, 'address') ?>
+    <?= $form->field($model, 'total') ?>
 
     <?= $form->field($model, 'discount') ?>
 
-    <?php // echo $form->field($model, 'card_list') ?>
+    <?= $form->field($model, 'card_id') ?>
 
-    <?php // echo $form->field($model, 'total') ?>
+    <?php // echo $form->field($model, 'created_at') ?>
+
+    <?php // echo $form->field($model, 'is_delivered') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

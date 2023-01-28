@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="d-flex flex-column">
             <h2>Составные сущности</h2>
             <a href="?r=product/index">Продукт</a>
+            <a href="?r=review-id/index">Отзыв</a>
             <a href="?r=company/index">Компания</a>
         </div>
     </div>

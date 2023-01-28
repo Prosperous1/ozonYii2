@@ -17,8 +17,8 @@ class AddressSearch extends Address
     public function rules()
     {
         return [
-            [['id', 'house_num', 'apartment_num'], 'integer'],
-            [['city', 'street', 'comment'], 'safe'],
+            [['id', 'city_id', 'house', 'apartment', 'user_id'], 'integer'],
+            [['street', 'description'], 'safe'],
         ];
     }
 
@@ -59,13 +59,14 @@ class AddressSearch extends Address
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'house_num' => $this->house_num,
-            'apartment_num' => $this->apartment_num,
+            'city_id' => $this->city_id,
+            'house' => $this->house,
+            'apartment' => $this->apartment,
+            'user_id' => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'street', $this->street])
-            ->andFilterWhere(['like', 'comment', $this->comment]);
+        $query->andFilterWhere(['like', 'street', $this->street])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

@@ -12,17 +12,17 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user')->textInput() ?>
+    <?= $form->field($model, 'delivery_type_id')->textInput() ?>
 
-    <?= $form->field($model, 'type_of_order')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', ], ['prompt' => '']) ?>
-
-    <?= $form->field($model, 'address')->textInput() ?>
+    <?= $form->field($model, 'total')->textInput() ?>
 
     <?= $form->field($model, 'discount')->textInput() ?>
 
-    <?= $form->field($model, 'card_list')->textInput() ?>
+    <?= $form->field($model, 'card_id')->textInput() ?>
 
-    <?= $form->field($model, 'total')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'created_at')->textInput() ?>
+
+    <?= $form->field($model, 'is_delivered')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

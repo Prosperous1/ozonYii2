@@ -12,45 +12,33 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\CategoryId::find()->all(), 'id','name'))?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'media')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'is_discounted')->textInput() ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'company')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\CompanyList::find()->all(), 'id','company_id')) ?>
+    <?= $form->field($model, 'specifications')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'create_at')->widget(\yii\jui\DatePicker::className(), [
-        'options' => ['class' => 'form-control'],
-        'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
+    <?= $form->field($model, 'apply_method')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'modified_at')->widget(\yii\jui\DatePicker::className(), [
-        'options' => ['class' => 'form-control'],
-        'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
-
-    <?= $form->field($model, 'delete_at')->widget(\yii\jui\DatePicker::className(), [
-        'options' => ['class' => 'form-control'],
-        'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
-
-
-    <?= $form->field($model, 'characteristic')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'flag')->textInput() ?>
-
-    <?= $form->field($model, 'old_price')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'discount')->textInput() ?>
-
-    <?= $form->field($model, 'new_price')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'company_id')->textInput() ?>
 
     <?= $form->field($model, 'rating')->textInput() ?>
 
-    <?= $form->field($model, 'review')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\ReviewList::find()->all(), 'id','review_id')) ?>
+    <?= $form->field($model, 'created_at')->textInput() ?>
+
+    <?= $form->field($model, 'modificated_at')->textInput() ?>
+
+    <?= $form->field($model, 'created_by')->textInput() ?>
+
+    <?= $form->field($model, 'price')->textInput() ?>
+
+    <?= $form->field($model, 'category_id')->textInput() ?>
+
+    <?= $form->field($model, 'discount')->textInput() ?>
+
+    <?= $form->field($model, 'new_price')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

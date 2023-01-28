@@ -8,15 +8,19 @@ use Yii;
  * This is the model class for table "company".
  *
  * @property int $id
- * @property string $title
- * @property string $photo
+ * @property int $title
  * @property int $inn
- * @property string $create_at
- * @property string $modified_at
- * @property int $create_by
- * @property int $workman менеджер
+ * @property int $photo_url
+ * @property string $created_at
+ * @property string $modificated_at
+ * @property int $created_by
+ * @property int $manager_list_id
+ * @property int $products_id
  *
- * @property CompanyList $companyList
+ * @property User $createdBy
+ * @property ManagerList $managerList
+ * @property Products $products
+ * @property Product[] $products0
  */
 class Company extends \yii\db\ActiveRecord
 {
@@ -34,11 +38,12 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'photo', 'inn', 'create_at', 'modified_at', 'create_by', 'workman'], 'required'],
-            [['inn', 'create_by', 'workman'], 'integer'],
-            [['create_at', 'modified_at'], 'safe'],
-            [['title'], 'string', 'max' => 100],
-            [['photo'], 'string', 'max' => 500],
+            [['title', 'inn', 'photo_url', 'created_at', 'modificated_at', 'created_by', 'manager_list_id', 'products_id'], 'required'],
+            [['title', 'inn', 'photo_url', 'created_by', 'manager_list_id', 'products_id'], 'integer'],
+            [['created_at', 'modificated_at'], 'safe'],
+            [['manager_list_id'], 'exist', 'skipOnError' => true, 'targetClass' => ManagerList::class, 'targetAttribute' => ['manager_list_id' => 'id']],
+            [['products_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::class, 'targetAttribute' => ['products_id' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
 
@@ -50,22 +55,53 @@ class Company extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'photo' => 'Photo',
             'inn' => 'Inn',
-            'create_at' => 'Create At',
-            'modified_at' => 'Modified At',
-            'create_by' => 'Create By',
-            'workman' => 'менеджер',
+            'photo_url' => 'Photo Url',
+            'created_at' => 'Created At',
+            'modificated_at' => 'Modificated At',
+            'created_by' => 'Created By',
+            'manager_list_id' => 'Manager List ID',
+            'products_id' => 'Products ID',
         ];
     }
 
     /**
-     * Gets query for [[CompanyList]].
+     * Gets query for [[CreatedBy]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCompanyList()
+    public function getCreatedBy()
     {
-        return $this->hasOne(CompanyList::class, ['id' => 'id']);
+        return $this->hasOne(User::class, ['id' => 'created_by']);
+    }
+
+    /**
+     * Gets query for [[ManagerList]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getManagerList()
+    {
+        return $this->hasOne(ManagerList::class, ['id' => 'manager_list_id']);
+    }
+
+    /**
+     * Gets query for [[Products]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProducts()
+    {
+        return $this->hasOne(Products::class, ['id' => 'products_id']);
+    }
+
+    /**
+     * Gets query for [[Products0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProducts0()
+    {
+        return $this->hasMany(Product::class, ['company_id' => 'id']);
     }
 }

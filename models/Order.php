@@ -8,15 +8,16 @@ use Yii;
  * This is the model class for table "order".
  *
  * @property int $id
- * @property int $user
- * @property string $type_of_order
- * @property int $address
- * @property int $discount
- * @property int $card_list
+ * @property int $delivery_type_id
  * @property float $total
+ * @property int $discount
+ * @property int $card_id
+ * @property string $created_at
+ * @property int $is_delivered
  *
- * @property Address $address0
- * @property OrderList $orderList
+ * @property Card $card
+ * @property DeliveryType $deliveryType
+ * @property Orders[] $orders
  */
 class Order extends \yii\db\ActiveRecord
 {
@@ -34,11 +35,12 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user', 'type_of_order', 'address', 'discount', 'card_list', 'total'], 'required'],
-            [['user', 'address', 'discount', 'card_list'], 'integer'],
-            [['type_of_order'], 'string'],
+            [['delivery_type_id', 'total', 'discount', 'card_id', 'created_at', 'is_delivered'], 'required'],
+            [['delivery_type_id', 'discount', 'card_id', 'is_delivered'], 'integer'],
             [['total'], 'number'],
-            [['address'], 'exist', 'skipOnError' => true, 'targetClass' => Address::class, 'targetAttribute' => ['address' => 'id']],
+            [['created_at'], 'safe'],
+            [['card_id'], 'exist', 'skipOnError' => true, 'targetClass' => Card::class, 'targetAttribute' => ['card_id' => 'id']],
+            [['delivery_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => DeliveryType::class, 'targetAttribute' => ['delivery_type_id' => 'id']],
         ];
     }
 
@@ -49,32 +51,42 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user' => 'Пользователь',
-            'type_of_order' => 'Тип заказа',
-            'address' => 'Адрес',
-            'discount' => 'Скидка',
-            'card_list' => 'Список карт',
-            'total' => 'Итог',
+            'delivery_type_id' => 'Delivery Type ID',
+            'total' => 'Total',
+            'discount' => 'Discount',
+            'card_id' => 'Card ID',
+            'created_at' => 'Created At',
+            'is_delivered' => 'Is Delivered',
         ];
     }
 
     /**
-     * Gets query for [[Address0]].
+     * Gets query for [[Card]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getAddress0()
+    public function getCard()
     {
-        return $this->hasOne(Address::class, ['id' => 'address']);
+        return $this->hasOne(Card::class, ['id' => 'card_id']);
     }
 
     /**
-     * Gets query for [[OrderList]].
+     * Gets query for [[DeliveryType]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getOrderList()
+    public function getDeliveryType()
     {
-        return $this->hasOne(OrderList::class, ['id' => 'id']);
+        return $this->hasOne(DeliveryType::class, ['id' => 'delivery_type_id']);
+    }
+
+    /**
+     * Gets query for [[Orders]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrders()
+    {
+        return $this->hasMany(Orders::class, ['order_id' => 'id']);
     }
 }

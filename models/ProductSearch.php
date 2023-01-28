@@ -17,9 +17,9 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'category', 'company', 'flag', 'discount', 'rating', 'review'], 'integer'],
-            [['name', 'media', 'description', 'create_at', 'modified_at', 'delete_at', 'characteristic'], 'safe'],
-            [['old_price', 'new_price'], 'number'],
+            [['id', 'is_discounted', 'company_id', 'created_by', 'category_id', 'discount'], 'integer'],
+            [['title', 'description', 'specifications', 'apply_method', 'created_at', 'modificated_at'], 'safe'],
+            [['rating', 'price', 'new_price'], 'number'],
         ];
     }
 
@@ -60,23 +60,22 @@ class ProductSearch extends Product
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'category' => $this->category,
-            'company' => $this->company,
-            'create_at' => $this->create_at,
-            'modified_at' => $this->modified_at,
-            'delete_at' => $this->delete_at,
-            'flag' => $this->flag,
-            'old_price' => $this->old_price,
+            'is_discounted' => $this->is_discounted,
+            'company_id' => $this->company_id,
+            'rating' => $this->rating,
+            'created_at' => $this->created_at,
+            'modificated_at' => $this->modificated_at,
+            'created_by' => $this->created_by,
+            'price' => $this->price,
+            'category_id' => $this->category_id,
             'discount' => $this->discount,
             'new_price' => $this->new_price,
-            'rating' => $this->rating,
-            'review' => $this->review,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'media', $this->media])
+        $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'characteristic', $this->characteristic]);
+            ->andFilterWhere(['like', 'specifications', $this->specifications])
+            ->andFilterWhere(['like', 'apply_method', $this->apply_method]);
 
         return $dataProvider;
     }

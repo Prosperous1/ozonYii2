@@ -12,29 +12,21 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'photo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'title')->textInput() ?>
 
     <?= $form->field($model, 'inn')->textInput() ?>
 
-    <?= $form->field($model, 'create_at')->widget(\yii\jui\DatePicker::className(), [
-        'options' => ['class' => 'form-control'],
-        'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
+    <?= $form->field($model, 'photo_url')->textInput() ?>
 
-    <?= $form->field($model, 'modified_at')->widget(\yii\jui\DatePicker::className(), [
-        'options' => ['class' => 'form-control'],
-        'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
+    <?= $form->field($model, 'created_at')->textInput() ?>
 
-    <?= $form->field($model, 'create_by')->widget(\yii\jui\DatePicker::className(), [
-        'options' => ['class' => 'form-control'],
-        'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
+    <?= $form->field($model, 'modificated_at')->textInput() ?>
 
+    <?= $form->field($model, 'created_by')->textInput() ?>
 
-    <?= $form->field($model, 'workman')->textInput() ?>
+    <?= $form->field($model, 'manager_list_id')->textInput() ?>
+
+    <?= $form->field($model, 'products_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -17,9 +17,9 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['id', 'user', 'address', 'discount', 'card_list'], 'integer'],
-            [['type_of_order'], 'safe'],
+            [['id', 'delivery_type_id', 'discount', 'card_id', 'is_delivered'], 'integer'],
             [['total'], 'number'],
+            [['created_at'], 'safe'],
         ];
     }
 
@@ -60,14 +60,13 @@ class OrderSearch extends Order
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user' => $this->user,
-            'address' => $this->address,
-            'discount' => $this->discount,
-            'card_list' => $this->card_list,
+            'delivery_type_id' => $this->delivery_type_id,
             'total' => $this->total,
+            'discount' => $this->discount,
+            'card_id' => $this->card_id,
+            'created_at' => $this->created_at,
+            'is_delivered' => $this->is_delivered,
         ]);
-
-        $query->andFilterWhere(['like', 'type_of_order', $this->type_of_order]);
 
         return $dataProvider;
     }

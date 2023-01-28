@@ -17,35 +17,33 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'category') ?>
+    <?= $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'name') ?>
-
-    <?= $form->field($model, 'media') ?>
+    <?= $form->field($model, 'is_discounted') ?>
 
     <?= $form->field($model, 'description') ?>
 
-    <?php // echo $form->field($model, 'company') ?>
+    <?= $form->field($model, 'specifications') ?>
 
-    <?php // echo $form->field($model, 'create_at') ?>
+    <?php // echo $form->field($model, 'apply_method') ?>
 
-    <?php // echo $form->field($model, 'modified_at') ?>
+    <?php // echo $form->field($model, 'company_id') ?>
 
-    <?php // echo $form->field($model, 'delete_at') ?>
+    <?php // echo $form->field($model, 'rating') ?>
 
-    <?php // echo $form->field($model, 'characteristic') ?>
+    <?php // echo $form->field($model, 'created_at') ?>
 
-    <?php // echo $form->field($model, 'flag') ?>
+    <?php // echo $form->field($model, 'modificated_at') ?>
 
-    <?php // echo $form->field($model, 'old_price') ?>
+    <?php // echo $form->field($model, 'created_by') ?>
+
+    <?php // echo $form->field($model, 'price') ?>
+
+    <?php // echo $form->field($model, 'category_id') ?>
 
     <?php // echo $form->field($model, 'discount') ?>
 
     <?php // echo $form->field($model, 'new_price') ?>
-
-    <?php // echo $form->field($model, 'rating') ?>
-
-    <?php // echo $form->field($model, 'review') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

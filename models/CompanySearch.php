@@ -17,8 +17,8 @@ class CompanySearch extends Company
     public function rules()
     {
         return [
-            [['id', 'inn', 'create_by', 'workman'], 'integer'],
-            [['title', 'photo', 'create_at', 'modified_at'], 'safe'],
+            [['id', 'title', 'inn', 'photo_url', 'created_by', 'manager_list_id', 'products_id'], 'integer'],
+            [['created_at', 'modificated_at'], 'safe'],
         ];
     }
 
@@ -59,15 +59,15 @@ class CompanySearch extends Company
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'title' => $this->title,
             'inn' => $this->inn,
-            'create_at' => $this->create_at,
-            'modified_at' => $this->modified_at,
-            'create_by' => $this->create_by,
-            'workman' => $this->workman,
+            'photo_url' => $this->photo_url,
+            'created_at' => $this->created_at,
+            'modificated_at' => $this->modificated_at,
+            'created_by' => $this->created_by,
+            'manager_list_id' => $this->manager_list_id,
+            'products_id' => $this->products_id,
         ]);
-
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'photo', $this->photo]);
 
         return $dataProvider;
     }

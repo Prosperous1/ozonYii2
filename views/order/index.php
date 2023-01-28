@@ -7,7 +7,7 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\modelsOrderSearch $searchModel */
+/** @var app\models\OrderSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Orders';
@@ -29,13 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-
-            'user',
-            'type_of_order',
-            'address',
+            'id',
+            'delivery_type_id',
+            'total',
             'discount',
-            //'card_list',
-            //'total',
+            'card_id',
+            //'created_at',
+            //'is_delivered',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Order $model, $key, $index, $column) {

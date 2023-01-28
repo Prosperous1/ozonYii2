@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\Order;
-use app\modelsOrderSearch;
+use app\models\OrderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,7 +38,7 @@ class OrderController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new modelsOrderSearch();
+        $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [

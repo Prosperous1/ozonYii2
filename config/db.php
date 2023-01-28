@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=ozon',
+    'dsn' => 'mysql:host=localhost;dbname=ozone',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',
