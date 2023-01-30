@@ -42,6 +42,26 @@ class SignUpForm extends Model {
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'mail' => 'Почта',
+            'phone' => 'Телефон',
+            'login' => 'Логин',
+            'password' => 'Пароль',
+            'city_id' => 'Город',
+            'currency_id' => 'Валюта',
+            'sex_id' => 'Пол',
+            'photo_url' => 'Фото',
+            'date_of_birth' => 'Дата рождения',
+            'first_name' => 'Имя',
+            'last_name' => 'Фамилия',
+            'cart_id' => 'Карта',
+            'favourite_id' => 'Понравившиеся',
+            'orders_id' => 'Заказы',
+        ];
+    }
     /**
      * @throws Exception
      */

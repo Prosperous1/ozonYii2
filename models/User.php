@@ -107,8 +107,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'id' => 'ID',
             'mail' => 'Почта',
-            'phone' => 'Phone',
-            'login' => 'Login',
+            'phone' => 'Телефон',
+            'login' => 'Логин',
             'password' => 'sha256 encrypted pass',
             'city_id' => 'City ID',
             'currency_id' => 'Currency ID',
